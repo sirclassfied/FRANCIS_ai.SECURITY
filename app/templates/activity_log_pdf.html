@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    table { width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; }
+    th, td { border: 1px solid #333; padding: 6px; text-align: left; }
+    th { background: #555; color: white; }
+  </style>
+</head>
+<body>
+  <h2>Activity Log Report</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Username</th>
+        <th>IP Address</th>
+        <th>Suspicious</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+      <tr>
+        <td>{{ log.timestamp }}</td>
+        <td>{{ log.username }}</td>
+        <td>{{ log.ip_address }}</td>
+        <td>{{ 'Yes' if log.is_suspicious else 'No' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

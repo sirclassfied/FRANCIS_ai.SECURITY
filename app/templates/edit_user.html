@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <title>Edit User</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Edit User</h2>
+    <form method="POST">
+      <input type="text" name="username" value="{{ user.username }}" required>
+      <input type="text" name="email" value="{{ user.email }}" required>
+      <select name="role" required>
+        <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+        <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+      </select>
+      <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('main.manage_users') }}">⬅ Back</a>
+  </div>
+</body>
+</html>

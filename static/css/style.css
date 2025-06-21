@@ -1,0 +1,97 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+.container, .dashboard {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+h1, h2 {
+  color: #00d8ff;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 12px 0;
+  border: none;
+  border-radius: 5px;
+  background: #2c2c2c;
+  color: #eee;
+  font-size: 16px;
+}
+
+input[type="checkbox"] {
+  margin-right: 6px;
+  transform: scale(1.1);
+}
+
+button, .btn {
+  background: #00d8ff;
+  border: none;
+  color: #121212;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+button:hover, .btn:hover {
+  background: #00a3cc;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+th {
+  background: #007acc;
+  color: white;
+}
+
+.flash {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.flash.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.flash.warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.flash.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.flash.info {
+  background-color: #17a2b8;
+  color: white;
+}

@@ -1,0 +1,1 @@
+# Define Flask config and mail settings here
