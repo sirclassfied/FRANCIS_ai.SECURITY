@@ -19,3 +19,4 @@ class Config:
     MAIL_USERNAME = os.environ.get('francislota08@gmail') # Your email for sending
     MAIL_PASSWORD = os.environ.get('quitsgfjavbunkgx') # Your email password/app password
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER') or 'francislota08@gmail' # Email from which alerts/resets are sent
+    
