@@ -1,6 +1,23 @@
-Flask
-Flask-Mail
-Flask-SQLAlchemy
-itsdangerous
-pdfkit
-gunicorn
+# Core Flask Framework and essential extensions
+Flask>=3.1.1                # Main web framework
+Flask-SQLAlchemy>=3.1.1     # ORM integration with SQLAlchemy
+Flask-Migrate>=4.0.5        # Database migrations (Alembic wrapper)
+Flask-Mail>=0.9.1           # Email sending capabilities
+Flask-Login>=0.6.3          # User session management
+
+# Security and Utilities
+itsdangerous>=2.2.0         # Used for secure token generation (e.g., password reset links)
+python-dotenv>=1.0.0        # For loading environment variables from a .env file
+Werkzeug>=3.0.0             # WSGI utility library (often a Flask dependency, but good to list)
+
+# Deployment Server
+gunicorn>=21.2.0            # Production WSGI HTTP Server (for Linux deployment like Render)
+waitress>=2.1.2           # Recommended WSGI server for Windows development (uncomment if deploying on Windows)
+
+# AI/Anomaly Detection Dependencies
+pandas>=2.2.0               # Data manipulation and analysis (for anomaly detection model)
+scikit-learn>=1.4.0         # Machine learning library (for IsolationForest)
+
+# Other specific dependencies you might have, based on previous screenshots
+# If you are using it for PDF generation.
+ pdfkit>=1.0.0             # Uncomment if you use pdfkit (e.g., for activity_log_pdf.html)
