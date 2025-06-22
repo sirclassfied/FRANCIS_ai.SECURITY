@@ -1,43 +1,18 @@
-<!doctype html>
-<html>
-<head>
-  <title>Activity Log</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-  <div class="dashboard">
-    <h1>Suspicious Activity Log <a href="{{ url_for('main.export_activity_log') }}" class="btn">⬇ Export Logs (CSV)</a>
-</h1>
-    <table border="1" width="100%" style="border-collapse: collapse; margin-top: 20px;">
-      <tr style="background: #ddd;">
-        <th>Timestamp</th>
-        <th>Username</th>
-        <th>IP Address</th>
-        <th>Suspicious?</th>
-      </tr>
-      {% for log in logs %}
-      <tr>
-        <td>{{ log.timestamp }}</td>
-        <td>{{ log.username }}</td>
-        <td>{{ log.ip_address }}</td>
-        <td>{{ '✅' if log.is_suspicious else '❌' }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-    <a href="{{ url_for('main.admin_dashboard') }}" class="btn" style="margin-top: 20px;">⬅ Back to Dashboard</a>
-  </div>
-  <form method="GET" action="{{ url_for('main.activity_log') }}">
-  <label><input type="checkbox" name="suspicious" {% if request.args.get('suspicious') %}checked{% endif %}> Show Suspicious Only</label>
-  <button type="submit" class="btn">Filter</button>
-</form>
-<form method="GET" action="{{ url_for('main.activity_log') }}" style="margin-bottom: 10px;">
-  <label>
-    <input type="checkbox" name="suspicious" value="1" {% if suspicious_only %}checked{% endif %}>
-    Show Suspicious Only
-  </label>
-  <button type="submit" class="btn">Filter</button>
-  <a href="{{ url_for('main.export_activity_log', suspicious=suspicious_only) }}" class="btn">⬇ Export Logs (PDF)</a>
-</form>
-
-</body>
-</html>
+<!-- templates/activity_log.html -->
+{% extends 'base.html' %}
+{% block title %}Activity Log{% endblock %}
+{% block content %}
+<h2 class="fade-in">Activity Log</h2>
+<table class="fade-in">
+    <thead>
+        <tr><th>Timestamp</th><th>User</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        <!-- Example entry -->
+        <tr>
+            <td>2025-06-22 12:00</td><td>alice</td><td>Logged in</td>
+        </tr>
+        <!-- More entries... -->
+    </tbody>
+</table>
+{% endblock %}

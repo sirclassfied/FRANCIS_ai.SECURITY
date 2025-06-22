@@ -1,87 +1,17 @@
-<!doctype html>
-<html>
-<head>
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <div class="dashboard">
-    <button id="toggle-dark" class="toggle-darkmode">🌓 Toggle Dark Mode</button>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome, Admin!</p>
-
-    <canvas id="activityChart" width="400" height="200"></canvas>
-
-    <div style="margin-top: 30px;">
-      <a href="{{ url_for('main.manage_users') }}" class="btn">👥 Manage Users</a>
-      <a href="{{ url_for('main.logout') }}" class="logout">🚪 Logout</a>
+<!-- templates/admin_dashboard.html -->
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2 class="fade-in">Admin Dashboard</h2>
+<div class="content-cards">
+    <div class="card slide-in">
+        <h3>Total Users</h3>
+        <p>1234</p>
     </div>
-  </div>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  <script>
-function loadChart(filter = '') {
-  const url = filter ? "{{ url_for('main.activity_data_filtered') }}?filter=" + filter : "{{ url_for('main.activity_data') }}";
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const ctx = document.getElementById("activityChart").getContext('2d');
-      if (window.activityChart) {
-        window.activityChart.destroy();
-      }
-      window.activityChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: data.labels,
-          datasets: [{
-            label: 'Login Attempts',
-            data: data.values,
-            backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545']
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: { beginAtZero: true }
-          }
-        }
-      });
-    });
-}
-document.getElementById('filter').addEventListener('change', (e) => {
-  loadChart(e.target.value);
-});
-loadChart();
-</script>
-
-  <script>
-    fetch("{{ url_for('main.activity_data') }}")
-      .then(res => res.json())
-      .then(data => {
-        new Chart(document.getElementById("activityChart"), {
-          type: 'bar',
-          data: {
-            labels: data.labels,
-            datasets: [{
-              label: 'Login Attempts',
-              data: data.values,
-              backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545']
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: { beginAtZero: true }
-            }
-          }
-        });
-      });
-  </script>
-  <select id="filter" class="btn" style="margin-bottom: 15px;">
-  <option value="">All</option>
-  <option value="suspicious">Suspicious Only</option>
-</select>
-<canvas id="activityChart" width="400" height="200"></canvas>
-
-</body>
-</html>
+    <div class="card slide-in">
+        <h3>Active Sessions</h3>
+        <p>56</p>
+    </div>
+    <!-- Add more cards as needed -->
+</div>
+{% endblock %}

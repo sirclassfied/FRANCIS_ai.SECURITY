@@ -1,97 +1,154 @@
+/* static/css/style.css */
+
+/* Base colors using CSS variables (light mode by default) */
+:root {
+    --background-color: #f5f5f5;
+    --sidebar-bg-color: #e0e0e0;
+    --text-color: #333;
+    --hover-bg-color: #d0d0d0;
+    --active-bg-color: #cccccc;
+    --active-text-color: #000;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #121212;
-  color: #eee;
-  margin: 0;
-  padding: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.container, .dashboard {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #1e1e1e;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+/* Dark mode variables override */
+body.dark-mode {
+    --background-color: #2c2c2c;
+    --sidebar-bg-color: #333;
+    --text-color: #f5f5f5;
+    --hover-bg-color: #444;
+    --active-bg-color: #555;
+    --active-text-color: #fff;
 }
 
-h1, h2 {
-  color: #00d8ff;
+/* Sidebar (fixed width, full height) */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 220px; /* fixed width for sidebar */
+    background-color: var(--sidebar-bg-color);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
 }
 
-input[type="text"], input[type="email"], input[type="password"], select {
-  width: 100%;
-  padding: 10px;
-  margin: 6px 0 12px 0;
-  border: none;
-  border-radius: 5px;
-  background: #2c2c2c;
-  color: #eee;
-  font-size: 16px;
+.sidebar h2 {
+    text-align: center;
+    padding: 1rem 0;
+    margin: 0;
 }
 
-input[type="checkbox"] {
-  margin-right: 6px;
-  transform: scale(1.1);
+.sidebar a {
+    display: block;
+    color: var(--text-color);
+    padding: 12px 20px;
+    text-decoration: none;
+}
+.sidebar a.active {
+    background-color: var(--active-bg-color);
+    color: var(--active-text-color);
+}
+.sidebar a:hover {
+    background-color: var(--hover-bg-color);
+    color: var(--text-color);
 }
 
-button, .btn {
-  background: #00d8ff;
-  border: none;
-  color: #121212;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  margin-right: 10px;
+/* Main content area (margin-left equals sidebar width) */
+.main {
+    margin-left: 220px;
+    padding: 20px;
 }
 
-button:hover, .btn:hover {
-  background: #00a3cc;
-  color: #fff;
+/* Header */
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+#theme-toggle {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
+/* Utility classes */
+.content {
+    padding: 20px;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+.content-centered {
+    text-align: center;
+}
+
+/* Table styling */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 12px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #333;
+/* Cards layout (flex container) */
+.content-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.card {
+    background-color: var(--sidebar-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 150px;
 }
 
-th {
-  background: #007acc;
-  color: white;
+/* Animations using keyframes */
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
-.flash {
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+/* Responsive: sidebar to top nav on small screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    .main {
+        margin-left: 0;
+    }
 }
-
-.flash.success {
-  background-color: #28a745;
-  color: white;
-}
-
-.flash.warning {
-  background-color: #ffc107;
-  color: black;
-}
-
-.flash.danger {
-  background-color: #dc3545;
-  color: white;
-}
-
-.flash.info {
-  background-color: #17a2b8;
-  color: white;
+@media (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
 }
